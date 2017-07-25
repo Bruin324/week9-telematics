@@ -1,5 +1,7 @@
 package com.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by macuser on 7/21/17.
  */
@@ -55,7 +57,12 @@ public class VehicleInfo {
         this.odometerReadingForLastOilChange = odometerReadingForLastOilChange;
     }
 
+    @JsonIgnore
     public double getMilesPerGallon() {
         return (odometer / consumption);
     }
+
+
+//    public void setMilesPerGallon(double odometer, double consumption) {
+//    }
 }

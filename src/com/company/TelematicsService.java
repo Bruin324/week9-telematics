@@ -19,6 +19,7 @@ public class TelematicsService {
         System.out.println("Odometer at last oil Change: " + vehicleInfo.getOdometerReadingForLastOilChange());
         System.out.println("Gas Mileage: " + vehicleInfo.getMilesPerGallon() + "mpg");
 
+
         //Creates file for new vehicle and writes to JSON */
 
         String json = null;
@@ -27,6 +28,8 @@ public class TelematicsService {
 
         try {
             json = mapper.writeValueAsString(vehicleInfo);
+            System.out.println("vehicleInfo: " + vehicleInfo);
+            System.out.println("json: " + json);
             FileWriter createFile = new FileWriter(newVehicle);
             createFile.write(json);
             createFile.close();
@@ -55,13 +58,13 @@ public class TelematicsService {
                     odometerTotal += vi.getOdometer();
                     oilChangeTotal += vi.getOdometerReadingForLastOilChange();
                     totalVehicles++;
-                    // Now you have a File object named "f". You can use this in the FileReader constructor
-                    // new FileReader(f)
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+
+        //
 
         double consumptionAvg =  Math.round((consumptionTotal/totalVehicles) * 10.0) / 10.0;
         double engineAvg =  Math.round((engineSizeTotal/totalVehicles) * 10.0) / 10.0;
